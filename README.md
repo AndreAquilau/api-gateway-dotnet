@@ -8,7 +8,7 @@ Acesse a pasta src no terminal.
 Execute o seguinte comando:
 
 ```cs
-dotnet watch run --project .\CoreBanking.Api\ --environment Development
+dotnet watch run --project .\APIGateway.Api\ --environment Development
 
 dotnet watch 🚀 Started
 info: APIGateway.Worker.Worker[0]
