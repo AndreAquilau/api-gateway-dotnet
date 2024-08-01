@@ -27,8 +27,9 @@ public class CEPService : ICEPRepository
 
     public async Task<CEPObjectValue> ConsultarCepAsync(string cep)
     {
-        var client = RestService.For<IRefitCEPService>("https://viacep.com.br", new RefitSettings(){});
-        var response = await client.ConsultarCepAsync(cep);
+        var headers = new Dictionary<string, string> { { "Authorization", "Bearer tokenGoesHere" }, { "X-Tenant-Id", "123" } };
+        var rest = RestService.For<IRefitCEPService>("https://viacep.com.br", new RefitSettings(){});
+        var response = await rest.ConsultarCepAsync(cep, headers);
 
         if (response.IsSuccessStatusCode && response.Content.erro == "false")
         {

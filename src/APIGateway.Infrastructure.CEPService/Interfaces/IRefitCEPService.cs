@@ -12,7 +12,7 @@ namespace APIGateway.Infrastructure.CEPService.Interfaces;
 public interface IRefitCEPService
 {
     [Get("/ws/{cep}/json/")]
-    Task<ApiResponse<CEPResponse>> ConsultarCepAsync(string cep);
+    Task<ApiResponse<CEPResponse>> ConsultarCepAsync(string cep, [HeaderCollection] IDictionary<string, string> headers);
 
 }
 
