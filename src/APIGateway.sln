@@ -9,18 +9,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Worker", "APIGat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Domain", "APIGateway.Domain\APIGateway.Domain.csproj", "{BADCD768-3124-43BA-B289-6320960B9F3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infra.Data", "APIGateway.Infra.Data\APIGateway.Infra.Data.csproj", "{8B8A04B9-6566-45BD-871C-F746624D6668}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infra.IoC", "APIGateway.Infra.IoC\APIGateway.Infra.IoC.csproj", "{CB8549CC-41AE-4051-B694-975D9F824FBB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infra.Test", "APIGateway.Infra.Test\APIGateway.Infra.Test.csproj", "{0BFF88F3-A5D8-4020-9141-6E67C388D1EA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infra.Queue", "APIGateway.Infra.Queue\APIGateway.Infra.Queue.csproj", "{E730E3DA-C09A-45E6-869B-E3D4B3EA98D4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EB1DB30-2977-433C-97BF-CF30C71C2E4D}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
+		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Application", "APIGateway.Application\APIGateway.Application.csproj", "{844C73B8-AABF-43A3-AF99-4F890462B461}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Test", "APIGateway.Test\APIGateway.Test.csproj", "{FF203311-F5AA-4B95-AF24-1F1E96AD656D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.Data", "APIGateway.Infrastructure.Data\APIGateway.Infrastructure.Data.csproj", "{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.IoC", "APIGateway.Infrastructure.IoC\APIGateway.Infrastructure.IoC.csproj", "{66CF906B-647B-4A6E-92DE-3524E182FBD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.Queue", "APIGateway.Infrastructure.Queue\APIGateway.Infrastructure.Queue.csproj", "{EB67694C-6850-45B6-972E-10C557E16A57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.CEPService", "APIGateway.Infrastructure.CEPService\APIGateway.Infrastructure.CEPService.csproj", "{938A077B-B418-412F-8A7E-48BDEC3CAE4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,22 +44,30 @@ Global
 		{BADCD768-3124-43BA-B289-6320960B9F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BADCD768-3124-43BA-B289-6320960B9F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BADCD768-3124-43BA-B289-6320960B9F3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B8A04B9-6566-45BD-871C-F746624D6668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B8A04B9-6566-45BD-871C-F746624D6668}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B8A04B9-6566-45BD-871C-F746624D6668}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B8A04B9-6566-45BD-871C-F746624D6668}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB8549CC-41AE-4051-B694-975D9F824FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB8549CC-41AE-4051-B694-975D9F824FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB8549CC-41AE-4051-B694-975D9F824FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB8549CC-41AE-4051-B694-975D9F824FBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BFF88F3-A5D8-4020-9141-6E67C388D1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BFF88F3-A5D8-4020-9141-6E67C388D1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BFF88F3-A5D8-4020-9141-6E67C388D1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BFF88F3-A5D8-4020-9141-6E67C388D1EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E730E3DA-C09A-45E6-869B-E3D4B3EA98D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E730E3DA-C09A-45E6-869B-E3D4B3EA98D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E730E3DA-C09A-45E6-869B-E3D4B3EA98D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E730E3DA-C09A-45E6-869B-E3D4B3EA98D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844C73B8-AABF-43A3-AF99-4F890462B461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844C73B8-AABF-43A3-AF99-4F890462B461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844C73B8-AABF-43A3-AF99-4F890462B461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844C73B8-AABF-43A3-AF99-4F890462B461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF203311-F5AA-4B95-AF24-1F1E96AD656D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF203311-F5AA-4B95-AF24-1F1E96AD656D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF203311-F5AA-4B95-AF24-1F1E96AD656D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF203311-F5AA-4B95-AF24-1F1E96AD656D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB67694C-6850-45B6-972E-10C557E16A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB67694C-6850-45B6-972E-10C557E16A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB67694C-6850-45B6-972E-10C557E16A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB67694C-6850-45B6-972E-10C557E16A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{938A077B-B418-412F-8A7E-48BDEC3CAE4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938A077B-B418-412F-8A7E-48BDEC3CAE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938A077B-B418-412F-8A7E-48BDEC3CAE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938A077B-B418-412F-8A7E-48BDEC3CAE4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

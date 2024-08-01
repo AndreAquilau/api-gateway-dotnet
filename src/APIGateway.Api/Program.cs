@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using APIGateway.Infra.IoC;
+using APIGateway.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
