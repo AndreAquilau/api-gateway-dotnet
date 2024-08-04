@@ -53,8 +53,8 @@ info: APIGateway.Worker.Worker[0]
         "siafi": "7107"
       },
       "status_code": "200",
-      "created_at": "",
-      "updated_at": ""
+      "created_at": "2024-08-29T20:00:00.1000",
+      "updated_at": "2024-08-29T21:00:00.1000"
     }
   ]
 }
