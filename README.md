@@ -28,3 +28,34 @@ info: APIGateway.Worker.Worker[0]
 info: APIGateway.Worker.Worker[0]
       Worker running at: 07/31/2024 00:27:46 -04:00
 ```
+
+
+```json
+{
+  "CEPs": [
+    {
+      "transaction_id": "c613660d-69ce-450c-a5f4-98ba99e0713a",
+      "pipeline": "consultar-cep",
+      "url": "",
+      "query": "",
+      "payload": "01001000",
+      "response": {
+        "cep": "01001-000",
+        "logradouro": "Praça da Sé",
+        "complemento": "lado ímpar",
+        "unidade": "",
+        "bairro": "Sé",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "ibge": "3550308",
+        "gia": "1004",
+        "ddd": "11",
+        "siafi": "7107"
+      },
+      "status_code": "200",
+      "created_at": "",
+      "updated_at": ""
+    }
+  ]
+}
+```
