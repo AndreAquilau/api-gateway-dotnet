@@ -1,22 +1,11 @@
 ﻿using APIGateway.Domain.CEP.ObjectValues;
-using APIGateway.Domain.Interfaces;
+using APIGateway.Domain.CEP.Services;
 using APIGateway.Infrastructure.CEPService.Interfaces;
 using Refit;
-using System.Text.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json.Serialization;
-using System.Net.Http.Json;
-using APIGateway.Infrastructure.CEPService.CepException;
 
 namespace APIGateway.Infrastructure.CEPService.Services;
 
-
-
-public class CEPService : ICEPRepository
+public class CEPService : ICEPService
 {
     private readonly IRefitCEPService _refitCEPService;
 
@@ -28,14 +17,14 @@ public class CEPService : ICEPRepository
     public async Task<CEPObjectValue> ConsultarCepAsync(string cep)
     {
         var headers = new Dictionary<string, string> { { "Authorization", "Bearer tokenGoesHere" }, { "X-Tenant-Id", "123" } };
-        var rest = RestService.For<IRefitCEPService>("https://viacep.com.br", new RefitSettings(){});
+        var rest = RestService.For<IRefitCEPService>("https://viacep.com.br", new RefitSettings() { });
         var response = await rest.ConsultarCepAsync(cep, headers);
 
         if (response.IsSuccessStatusCode && response.Content.erro == "false")
         {
             return response.Content;
         }
-        else if(!response.IsSuccessStatusCode && response.Content != null)
+        else if (!response.IsSuccessStatusCode && response.Content != null)
         {
             Console.WriteLine("Erro ao buscar CPF");
 

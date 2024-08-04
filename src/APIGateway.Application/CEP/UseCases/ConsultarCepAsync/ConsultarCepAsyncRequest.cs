@@ -7,11 +7,11 @@ using APIGateway.Application.Presenters.CEP;
 using APIGateway.Domain.CEP.ObjectValues;
 using MediatR;
 
-namespace APIGateway.Application.CEP.UseCases.ConsultarCep;
-public class ConsultarCepRequest : IRequest<CEPPresenter>
+namespace APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
+public class ConsultarCepAsyncRequest : IRequest<CEPPresenterAsync>
 {
     public string Cep { get; set; } = String.Empty;
-    public ConsultarCepRequest(string cep)
+    public ConsultarCepAsyncRequest(string cep)
     {
         Cep = cep;
     }

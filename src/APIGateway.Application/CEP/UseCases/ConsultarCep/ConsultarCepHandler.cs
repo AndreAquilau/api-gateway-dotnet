@@ -1,16 +1,16 @@
-﻿using APIGateway.Application.DTOs.CEPDtos;
-using APIGateway.Domain.CEP.ObjectValues;
+﻿using APIGateway.Application.Presenters.CEP;
 using APIGateway.Infrastructure.CEPService.Services;
+using APIGateway.Infrastructure.Kafka;
 using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace APIGateway.Application.CEP.UseCases.ConsultarCep;
-public class ConsultarCepHandler : IRequestHandler<ConsultarCepRequest, CEPDto>
+public class ConsultarCepHandler : IRequestHandler<ConsultarCepRequest, CEPPresenter>
 {
     private readonly IMapper _mapper;
     private readonly CEPService _CepService;
@@ -21,12 +21,12 @@ public class ConsultarCepHandler : IRequestHandler<ConsultarCepRequest, CEPDto>
         _CepService = CepService;
     }
 
-    public async Task<CEPDto> Handle(ConsultarCepRequest request, CancellationToken cancellationToken)
+    public async Task<CEPPresenter> Handle(ConsultarCepRequest request, CancellationToken cancellationToken)
     {
         var response = await _CepService.ConsultarCepAsync(request.Cep);
 
         Console.WriteLine(response);
 
-        return _mapper.Map<CEPDto>(response);
+        return _mapper.Map<CEPPresenter>(response);
     }
 }

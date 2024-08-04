@@ -1,5 +1,5 @@
 ﻿using APIGateway.Domain.CEP.ObjectValues;
-using APIGateway.Application.DTOs.CEPDtos;
+using APIGateway.Application.Presenters.CEP;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,6 @@ public class DTOMappingProfile : Profile
 {
     public DTOMappingProfile()
     {
-        CreateMap<CEPObjectValue, CEPDto>().ReverseMap();
+        CreateMap<CEPObjectValue, CEPPresenter>().ReverseMap();
     }
 }

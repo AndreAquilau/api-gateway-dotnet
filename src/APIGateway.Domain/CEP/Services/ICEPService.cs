@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIGateway.Domain.Interfaces;
-public interface ICEPRepository
+namespace APIGateway.Domain.CEP.Services;
+public interface ICEPService
 {
     Task<CEPObjectValue> ConsultarCepAsync(string cep);
 }

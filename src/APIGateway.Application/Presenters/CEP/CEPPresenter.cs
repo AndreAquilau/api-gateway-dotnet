@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIGateway.Application.DTOs.CEPDtos;
-public class CEPDto
+namespace APIGateway.Application.Presenters.CEP;
+public class CEPPresenter
 {
     public string cep { get; set; } = String.Empty;
     public string logradouro { get; set; } = String.Empty;

@@ -11,6 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Domain", "APIGat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EB1DB30-2977-433C-97BF-CF30C71C2E4D}"
 	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
@@ -22,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.IoC", "APIGateway.Infrastructure.IoC\APIGateway.Infrastructure.IoC.csproj", "{66CF906B-647B-4A6E-92DE-3524E182FBD5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.Queue", "APIGateway.Infrastructure.Queue\APIGateway.Infrastructure.Queue.csproj", "{EB67694C-6850-45B6-972E-10C557E16A57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.Kafka", "APIGateway.Infrastructure.Kafka\APIGateway.Infrastructure.Kafka.csproj", "{EB67694C-6850-45B6-972E-10C557E16A57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.CEPService", "APIGateway.Infrastructure.CEPService\APIGateway.Infrastructure.CEPService.csproj", "{938A077B-B418-412F-8A7E-48BDEC3CAE4D}"
 EndProject

@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace APIGateway.Infrastructure.CEPService.CepException;
 public class CepException : Exception
 {
-    public string erro {  get; set; } = string.Empty;
-    public CepException(string message): base(message: message) { }
+    public string erro { get; set; } = string.Empty;
+    public CepException(string message) : base(message: message) { }
 }

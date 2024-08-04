@@ -1,12 +1,13 @@
-﻿using APIGateway.Application.CEP.UseCases.ConsultarCep;
-using APIGateway.Application.DTOs;
-using APIGateway.Application.DTOs.CEPDtos;
+﻿using APIGateway.Api.DTOs;
+using APIGateway.Application.CEP.UseCases.ConsultarCep;
+using APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
+using APIGateway.Application.Presenters.CEP;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIGateway.Api.Controllers;
 
-[Route("api/v1")]
+[Route("api/[controller]")]
 [ApiController]
 public class CEPController : ControllerBase
 {
@@ -17,22 +18,13 @@ public class CEPController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("cep/{cep}")]
-    public async Task<ActionResult<CEPDto?>> GetCEP(string cep)
+    [HttpGet("v1/cep/ConsultaAsync/{cep}")]
+    public async Task<ActionResult<ResponseAsync?>> GetCEPAsync(string cep)
     {
         try
         {
-            CEPDto? result = null;
 
-            var task = Task.Run(async () =>
-            {
-                result = await _mediator.Send(new ConsultarCepRequest(cep: cep));
-                Thread.Sleep(1000);
-            });
-
-            task.Wait(10000);
-
-            Console.WriteLine(result);
+            var result = await _mediator.Send(new ConsultarCepAsyncRequest(cep: cep));
 
             return Ok(result);
         }
@@ -40,7 +32,31 @@ public class CEPController : ControllerBase
         {
             Console.WriteLine(ex.Message);
 
-            var error = new { error = true, message = ex.InnerException?.Message ?? nameof(GetCEP)};
+            var error = new { error = true, message = ex.InnerException?.Message ?? nameof(GetCEPAsync) };
+
+            return BadRequest(error);
+        }
+
+    }
+
+    [HttpGet("v1/Consulta/{cep}")]
+    public async Task<ActionResult<CEPPresenter?>> GetCEP(string cep)
+    {
+        try
+        {
+            CEPPresenter? result = await _mediator.Send(new ConsultarCepRequest(cep: cep));
+
+            Console.WriteLine(result);
+
+            await Task.Delay(10000);
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+
+            var error = new { error = true, message = ex.InnerException?.Message ?? nameof(GetCEP) };
 
             return BadRequest(error);
         }

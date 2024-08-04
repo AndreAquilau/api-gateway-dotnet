@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\APIGateway.Application\APIGateway.Application.csproj" />
     <ProjectReference Include="..\APIGateway.Infrastructure.CEPService\APIGateway.Infrastructure.CEPService.csproj" />
+    <ProjectReference Include="..\APIGateway.Infrastructure.Kafka\APIGateway.Infrastructure.Kafka.csproj" />
     <ProjectReference Include="..\APIGateway.Worker\APIGateway.Worker.csproj" />
   </ItemGroup>
 
