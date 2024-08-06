@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 using Confluent.Kafka;
 
 namespace APIGateway.Infrastructure.Kafka;
-
-public class ClientKafka
+public class ClientKafka 
 {
+   private readonly ClientConfig _clientConfig;
+    public ClientKafka(ClientConfig clientConfig) {
+        _clientConfig = clientConfig;
+    }
 
-    private string BROKER_URL { get; set; } = "localhost:9092";
     public async Task<string> BasicProducer(string payload)
     {
         var uuid = Guid.NewGuid();
-        var config = new ProducerConfig { BootstrapServers = BROKER_URL };
+        var config = new ProducerConfig(_clientConfig);
 
         // If serializers are not specified, default serializers from
         // `Confluent.Kafka.Serializers` will be automatically used where
@@ -39,17 +41,11 @@ public class ClientKafka
         }
     }
 
-    public IConsumer<Ignore, string> BasicConsumer(string group, string topic)
+    public IConsumer<Ignore, string> BasicConsumer(string group, string topic )
     {
-        var conf = new ConsumerConfig
+        var conf = new ConsumerConfig(_clientConfig)
         {
             GroupId = group,
-            BootstrapServers = BROKER_URL,
-            // Note: The AutoOffsetReset property determines the start offset in the event
-            // there are not yet any committed offsets for the consumer group for the
-            // topic/partitions of interest. By default, offsets are committed
-            // automatically, so in this example, consumption will only start from the
-            // earliest message in the topic 'my-topic' the first time you run the program.
             AutoOffsetReset = AutoOffsetReset.Earliest,
             AllowAutoCreateTopics = true
         };
