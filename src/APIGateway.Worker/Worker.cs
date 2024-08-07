@@ -17,20 +17,20 @@ public class Worker : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
 
-        var c = _clientKafka.BasicConsumer("cep-consumer-group", "cep-topic");
+        var c = _clientKafka.BasicConsumer($"cep-consumer-group", "cep-topic.request");
 
         while (!stoppingToken.IsCancellationRequested)
         {
+            if (_logger.IsEnabled(LogLevel.Information))
+            {
+                _logger.LogInformation("Worker Consumer - running at: {time}", DateTimeOffset.Now);
+            }
+
             await Task.Run(() =>
             {
                 var cr = c.Consume(stoppingToken);
-                Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
+                Console.WriteLine($"Mensagem consumida '{cr.Message.Value}' no: '{cr.TopicPartitionOffset}'.");
             });
-
-            if (_logger.IsEnabled(LogLevel.Information))
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            }
 
             await Task.Delay(1000, stoppingToken);
         }
