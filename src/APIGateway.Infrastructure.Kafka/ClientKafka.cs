@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Confluent.Kafka;
 using Confluent.Kafka.Admin;
@@ -47,7 +48,8 @@ public class ClientKafka
 
     }
 
-    public async Task<string> BasicProducer(string topic, string payload)
+    public async Task<string> BasicProducer<TPayload>(string topic, string? transactionId, TPayload payload)
+        where TPayload : class
     {
         var uuid = Guid.NewGuid();
         var config = new ProducerConfig(_clientConfig);
@@ -59,8 +61,9 @@ public class ClientKafka
         {
             try
             {
-                var message = new Message<string, string> { Key = uuid.ToString(), Value = payload };
+                var message = new MessageCustom(payload: payload, transactionId: transactionId ?? "");
 
+                message.AddHeader("TransactionId", transactionId ?? "");
 
                 var dr = await p.ProduceAsync(topic, message);
                 Console.WriteLine($"Entregue '{dr.Value}' para '{dr.TopicPartitionOffset}'");

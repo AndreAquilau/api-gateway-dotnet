@@ -25,10 +25,8 @@ public class ConsultarCepAsyncHandler : IRequestHandler<ConsultarCepAsyncRequest
 
     public async Task<CEPPresenterAsync> Handle(ConsultarCepAsyncRequest request, CancellationToken cancellationToken)
     {
-        // var response = await _CepService.ConsultarCepAsync(request.Cep);
+        var transactionId = await _clientKafka.BasicProducer("cep-topic.request", request.TransactionId, request);
 
-        var transaction_id = await _clientKafka.BasicProducer("cep-topic.request", request.Cep);
-
-        return new CEPPresenterAsync { transaction_id = transaction_id };
+        return new CEPPresenterAsync { transactionId = transactionId };
     }
 }

@@ -3,6 +3,7 @@ using APIGateway.Application.CEP.UseCases.ConsultarCep;
 using APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
 using APIGateway.Application.Presenters.CEP;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIGateway.Api.Controllers;
@@ -12,10 +13,12 @@ namespace APIGateway.Api.Controllers;
 public class CEPController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IHttpContextAccessor _contextAccessor;
 
-    public CEPController(IMediator mediator)
+    public CEPController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
     {
         _mediator = mediator;
+        _contextAccessor = httpContextAccessor;
     }
 
     [HttpGet("v1/cep/ConsultaAsync/{cep}")]
@@ -23,8 +26,11 @@ public class CEPController : ControllerBase
     {
         try
         {
+            var transactionId = _contextAccessor?.HttpContext?.TraceIdentifier ?? Guid.NewGuid().ToString();
 
-            var result = await _mediator.Send(new ConsultarCepAsyncRequest(cep: cep));
+            Console.WriteLine($"TransactionId: {_contextAccessor?.HttpContext?.TraceIdentifier}");
+
+            var result = await _mediator.Send(new ConsultarCepAsyncRequest(cep: cep, transactionId: transactionId) );
 
             return Ok(result);
         }
@@ -44,11 +50,13 @@ public class CEPController : ControllerBase
     {
         try
         {
-            CEPPresenter? result = await _mediator.Send(new ConsultarCepRequest(cep: cep));
+            var transactionId = _contextAccessor?.HttpContext?.TraceIdentifier ?? Guid.NewGuid().ToString(); 
+
+            Console.WriteLine($"TransactionId: {_contextAccessor?.HttpContext?.TraceIdentifier}");
+
+            CEPPresenter? result = await _mediator.Send(new ConsultarCepRequest(cep: cep, transactionId: transactionId));
 
             Console.WriteLine(result);
-
-            await Task.Delay(10000);
 
             return Ok(result);
         }

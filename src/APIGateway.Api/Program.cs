@@ -1,12 +1,15 @@
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using APIGateway.Infrastructure.IoC;
+using APIGateway.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.UseKafka(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<MiddlewareRequest>();
 
 
 // Add services to the container.
@@ -56,5 +59,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors(op => op.AllowAnyOrigin());
 
 app.MapControllers();
+
+app.UseMiddleware<MiddlewareRequest>();
 
 app.Run();
