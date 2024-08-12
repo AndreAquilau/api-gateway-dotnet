@@ -1,3 +1,7 @@
+## Desenho de Solução da Arquiterura Modular/Microsserviço
+
+![Desenho de Arquiterura do Projeto](./doc/Arquitetura.png)
+
 ## Modo de Desenvolvimento
 
 Antes de iniciar o desenvolvimento das novas features, é necessário configurar o ambiente de desenvolvimento.
