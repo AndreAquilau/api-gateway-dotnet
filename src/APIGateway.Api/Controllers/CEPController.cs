@@ -2,6 +2,8 @@
 using APIGateway.Application.CEP.UseCases.ConsultarCep;
 using APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
 using APIGateway.Application.Presenters.CEP;
+using APIGateway.Infrastructure.Data;
+using APIGateway.Infrastructure.Data.Services;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +16,20 @@ public class CEPController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IHttpContextAccessor _contextAccessor;
+    private readonly PayloadService<ConsultarCepRequest, RequestDatabaseSettings> _requestPayloadService;
+    private readonly PayloadService<CEPPresenter, ReponseDatabaseSettings> _responsePayloadService;
 
-    public CEPController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
+    public CEPController(
+        IMediator mediator, 
+        IHttpContextAccessor httpContextAccessor,
+        PayloadService<ConsultarCepRequest, RequestDatabaseSettings> requestPayloadService,
+        PayloadService<CEPPresenter, ReponseDatabaseSettings> responsePayloadService
+        )
     {
         _mediator = mediator;
         _contextAccessor = httpContextAccessor;
+        _requestPayloadService = requestPayloadService;
+        _responsePayloadService = responsePayloadService;
     }
 
     [HttpGet("v1/cep/ConsultaAsync/{cep}")]
@@ -69,5 +80,18 @@ public class CEPController : ControllerBase
             return BadRequest(error);
         }
 
+    }
+
+    [HttpGet("v1/Consulta/Cep/{transactionId}")]
+    public async Task<ActionResult<CEPPresenter?>> GetCEPByTransactionId(string transactionId)
+    {
+        var response = await _responsePayloadService.GetAsyncId(transactionId);
+
+        if (response is null)
+        {
+            return NotFound();
+        }
+
+        return response.payload;
     }
 }

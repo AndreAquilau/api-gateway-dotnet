@@ -48,10 +48,9 @@ public class ClientKafka
 
     }
 
-    public async Task<string> BasicProducer<TPayload>(string topic, string? transactionId, TPayload payload)
+    public async Task<DeliveryResult<string, string>> BasicProducer<TPayload>(string topic, string? transactionId, TPayload payload)
         where TPayload : class
     {
-        var uuid = Guid.NewGuid();
         var config = new ProducerConfig(_clientConfig);
 
         // If serializers are not specified, default serializers from
@@ -68,7 +67,7 @@ public class ClientKafka
                 var dr = await p.ProduceAsync(topic, message);
                 Console.WriteLine($"Entregue '{dr.Value}' para '{dr.TopicPartitionOffset}'");
 
-                return uuid.ToString();
+                return dr;
 
             }
             catch (ProduceException<string, string> e)

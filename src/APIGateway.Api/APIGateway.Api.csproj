@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\APIGateway.Application\APIGateway.Application.csproj" />
+    <ProjectReference Include="..\APIGateway.Infrastructure.Data\APIGateway.Infrastructure.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

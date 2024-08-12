@@ -3,8 +3,15 @@ using APIGateway.Api.Middlewares;
 using APIGateway.Domain.CEP.Services;
 using APIGateway.Infrastructure.CEPService.Services;
 using Microsoft.OpenApi.Models;
+using APIGateway.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<RequestDatabaseSettings>(
+    builder.Configuration.GetSection("GatewayRequestStoreDatabase"));
+
+builder.Services.Configure<ReponseDatabaseSettings>(
+    builder.Configuration.GetSection("GatewayResponseStoreDatabase"));
 
 // Add services to the container.
 builder.Services.UseKafka(builder.Configuration);

@@ -28,18 +28,19 @@ public class Worker : BackgroundService
         {
             if (_logger.IsEnabled(LogLevel.Information))
             {
-                //_logger.LogInformation("Worker Consumer - running at: {time}", DateTimeOffset.Now);
+                _logger.LogInformation("Worker Consumer - running at: {time}", DateTimeOffset.Now);
             }
 
-            Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 var cr = c.Consume(stoppingToken);
-                Console.WriteLine($"Mensagem consumida '{cr.Message.Value}' no: '{cr.TopicPartitionOffset}'.");
 
                 var obj = JsonSerializer.Deserialize<MessageDataCustom>(cr.Message.Value);
 
                 if (obj is not null)
                 {
+                    Console.WriteLine($"Mensagem consumida '{cr.Message.Value}' no: '{cr.TopicPartitionOffset}'.");
+
                     Console.WriteLine($"Decodificando mensagem '{cr.Message.Value}' no: '{cr.TopicPartitionOffset}'.");
 
                     var payload = JsonSerializer.Deserialize<ConsultarCepAsyncConsumerRequest>(obj.payload ?? "");
@@ -54,9 +55,9 @@ public class Worker : BackgroundService
                     }
                 }
 
-            }).Wait(100);
+            });
 
-            await Task.Delay(1000, stoppingToken);
+            //await Task.Delay(1000, stoppingToken);
         }
 
         c.Dispose();

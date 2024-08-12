@@ -1,6 +1,11 @@
-﻿using APIGateway.Application.Profiles;
+﻿using APIGateway.Application.CEP.UseCases.ConsultarCep;
+using APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
+using APIGateway.Application.Presenters.CEP;
+using APIGateway.Application.Profiles;
 using APIGateway.Domain.CEP.Services;
 using APIGateway.Infrastructure.CEPService.Services;
+using APIGateway.Infrastructure.Data;
+using APIGateway.Infrastructure.Data.Services;
 using APIGateway.Infrastructure.Kafka;
 using System.Reflection;
 
@@ -10,6 +15,11 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSingleton<PayloadService<ConsultarCepRequest, RequestDatabaseSettings>>();
+        services.AddSingleton<PayloadService<CEPPresenter, ReponseDatabaseSettings>>();
+
+        services.AddSingleton<PayloadService<ConsultarCepAsyncRequest, RequestDatabaseSettings>>();
+
         services.AddSingleton<IHostedService, Worker>();
         services.AddSingleton<ICEPService, CEPService>();
 
