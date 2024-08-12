@@ -1,6 +1,6 @@
-﻿using APIGateway.Api.DTOs;
-using APIGateway.Application.CEP.UseCases.ConsultarCep;
+﻿using APIGateway.Application.CEP.UseCases.ConsultarCep;
 using APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
+using APIGateway.Application.Presenters;
 using APIGateway.Application.Presenters.CEP;
 using APIGateway.Infrastructure.Data;
 using APIGateway.Infrastructure.Data.Services;
@@ -33,7 +33,7 @@ public class CEPController : ControllerBase
     }
 
     [HttpGet("v1/cep/ConsultaAsync/{cep}")]
-    public async Task<ActionResult<ResponseAsync?>> GetCEPAsync(string cep)
+    public async Task<ActionResult<CEPPresenterAsync?>> GetCEPAsync(string cep)
     {
         try
         {
