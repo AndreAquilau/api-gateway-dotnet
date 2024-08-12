@@ -12,11 +12,6 @@ namespace APIGateway.Infrastructure.CEPService.Interfaces;
 public interface IRefitCEPService
 {
     [Get("/ws/{cep}/json/")]
-    Task<ApiResponse<CEPResponse>> ConsultarCepAsync(string cep, [HeaderCollection] IDictionary<string, string> headers);
+    Task<ApiResponse<CEPObjectValueOutput>> ConsultarCepAsync(string cep, [HeaderCollection] IDictionary<string, string> headers);
 
-}
-
-public class CEPResponse : CEPObjectValue
-{
-    public string erro { get; set; } = "false";
 }

@@ -1,22 +1,21 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Reflection;
-using APIGateway.Application.Profiles;
+﻿using APIGateway.Application.Profiles;
+using APIGateway.Domain.CEP.Services;
+using APIGateway.Infrastructure.CEPService.Services;
 using APIGateway.Infrastructure.Kafka;
-using Microsoft.Extensions.Configuration;
-using Confluent.Kafka;
+using System.Reflection;
 
-namespace APIGateway.Infrastructure.IoC;
+namespace APIGateway.Api;
 
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<IHostedService, APIGateway.Worker.Worker>();
+        services.AddSingleton<IHostedService, Worker>();
+        services.AddSingleton<ICEPService, CEPService>();
 
-        services.AddScoped<APIGateway.Infrastructure.CEPService.Services.CEPService>();
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Load($"APIGateway.{nameof(Application)}")));
         services.AddAutoMapper(typeof(DTOMappingProfile));
+
         return services;
     }
 

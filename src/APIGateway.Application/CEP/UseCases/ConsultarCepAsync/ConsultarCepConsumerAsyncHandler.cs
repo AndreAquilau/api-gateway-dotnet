@@ -1,29 +1,26 @@
 ﻿using APIGateway.Application.Presenters.CEP;
 using APIGateway.Domain.CEP.Services;
-using APIGateway.Infrastructure.CEPService.Services;
 using APIGateway.Infrastructure.Kafka;
 using AutoMapper;
 using MediatR;
 
-namespace APIGateway.Application.CEP.UseCases.ConsultarCep;
-public class ConsultarCepHandler : IRequestHandler<ConsultarCepRequest, CEPPresenter>
+namespace APIGateway.Application.CEP.UseCases.ConsultarCepAsync;
+public class ConsultarCepConsumerAsyncHandler : IRequestHandler<ConsultarCepAsyncConsumerRequest, CEPPresenter>
 {
     private readonly IMapper _mapper;
-    private readonly ICEPService _CepService;
     private readonly ClientKafka _clientKafka;
+    private readonly ICEPService _CepService;
 
-    public ConsultarCepHandler(ICEPService CepService, IMapper mapper, ClientKafka clientKafka)
+    public ConsultarCepConsumerAsyncHandler(ICEPService CepService, IMapper mapper, ClientKafka clientKafka)
     {
         _mapper = mapper;
         _CepService = CepService;
         _clientKafka = clientKafka;
     }
 
-    public async Task<CEPPresenter> Handle(ConsultarCepRequest request, CancellationToken cancellationToken)
+    public async Task<CEPPresenter> Handle(ConsultarCepAsyncConsumerRequest request, CancellationToken cancellationToken)
     {
-        Console.WriteLine("Executando ConsultarCepHandler " + request.Cep);
-
-        await _clientKafka.BasicProducer("cep-topic.request", request.TransactionId, request);
+        Console.WriteLine("Executando ConsultarCepConsumerAsyncHandler " + request.Cep);
 
         var response = await _CepService.ConsultarCepAsync(request.Cep);
 

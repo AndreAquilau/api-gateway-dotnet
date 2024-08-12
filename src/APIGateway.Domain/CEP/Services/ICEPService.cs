@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 namespace APIGateway.Domain.CEP.Services;
 public interface ICEPService
 {
-    Task<CEPObjectValue> ConsultarCepAsync(string cep);
+    Task<CEPObjectValueOutput> ConsultarCepAsync(string cep);
 }

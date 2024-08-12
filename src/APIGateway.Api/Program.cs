@@ -1,7 +1,8 @@
-using Microsoft.OpenApi.Models;
-using System.Reflection;
-using APIGateway.Infrastructure.IoC;
+using APIGateway.Api;
 using APIGateway.Api.Middlewares;
+using APIGateway.Domain.CEP.Services;
+using APIGateway.Infrastructure.CEPService.Services;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,6 @@ builder.Services.UseKafka(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<MiddlewareRequest>();
-
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

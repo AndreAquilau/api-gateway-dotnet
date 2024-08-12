@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Api", "APIGateway.Api\APIGateway.Api.csproj", "{DFCBD0C3-14C2-44AF-9320-E25EB9AE50F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Worker", "APIGateway.Worker\APIGateway.Worker.csproj", "{519233E4-F646-4E9B-B8A7-0F09DF8EF327}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Domain", "APIGateway.Domain\APIGateway.Domain.csproj", "{BADCD768-3124-43BA-B289-6320960B9F3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EB1DB30-2977-433C-97BF-CF30C71C2E4D}"
@@ -20,8 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Test", "APIGateway.Test\APIGateway.Test.csproj", "{FF203311-F5AA-4B95-AF24-1F1E96AD656D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.Data", "APIGateway.Infrastructure.Data\APIGateway.Infrastructure.Data.csproj", "{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.IoC", "APIGateway.Infrastructure.IoC\APIGateway.Infrastructure.IoC.csproj", "{66CF906B-647B-4A6E-92DE-3524E182FBD5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway.Infrastructure.Kafka", "APIGateway.Infrastructure.Kafka\APIGateway.Infrastructure.Kafka.csproj", "{EB67694C-6850-45B6-972E-10C557E16A57}"
 EndProject
@@ -37,10 +33,6 @@ Global
 		{DFCBD0C3-14C2-44AF-9320-E25EB9AE50F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFCBD0C3-14C2-44AF-9320-E25EB9AE50F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFCBD0C3-14C2-44AF-9320-E25EB9AE50F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{519233E4-F646-4E9B-B8A7-0F09DF8EF327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{519233E4-F646-4E9B-B8A7-0F09DF8EF327}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{519233E4-F646-4E9B-B8A7-0F09DF8EF327}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{519233E4-F646-4E9B-B8A7-0F09DF8EF327}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BADCD768-3124-43BA-B289-6320960B9F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BADCD768-3124-43BA-B289-6320960B9F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BADCD768-3124-43BA-B289-6320960B9F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,10 +49,6 @@ Global
 		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61E588AF-A5C6-4DA3-B3E8-CBAF7E873ABA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66CF906B-647B-4A6E-92DE-3524E182FBD5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB67694C-6850-45B6-972E-10C557E16A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB67694C-6850-45B6-972E-10C557E16A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB67694C-6850-45B6-972E-10C557E16A57}.Release|Any CPU.ActiveCfg = Release|Any CPU

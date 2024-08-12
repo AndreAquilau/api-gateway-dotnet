@@ -13,7 +13,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\APIGateway.Application\APIGateway.Application.csproj" />
-    <ProjectReference Include="..\APIGateway.Infrastructure.IoC\APIGateway.Infrastructure.IoC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>

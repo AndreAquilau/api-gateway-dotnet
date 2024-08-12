@@ -19,11 +19,11 @@ public class MessageCustom : Message<string, string>, IMessageCustom
 
 
 
-        Value = JsonSerializer.Serialize(new
+        Value = JsonSerializer.Serialize(new MessageDataCustom
         {
-            transactionId,
-            payload,
-        });
+            transactionId = transactionId,
+            payload = payload
+        }); 
 
 
     }

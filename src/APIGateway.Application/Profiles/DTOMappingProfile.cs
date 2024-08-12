@@ -12,6 +12,6 @@ public class DTOMappingProfile : Profile
 {
     public DTOMappingProfile()
     {
-        CreateMap<CEPObjectValue, CEPPresenter>().ReverseMap();
+        CreateMap<CEPObjectValueOutput, CEPPresenter>().ReverseMap();
     }
 }

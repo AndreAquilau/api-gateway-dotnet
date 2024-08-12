@@ -2,6 +2,7 @@
 using APIGateway.Domain.CEP.Services;
 using APIGateway.Infrastructure.CEPService.Interfaces;
 using Refit;
+using System.Text.Json;
 
 namespace APIGateway.Infrastructure.CEPService.Services;
 
@@ -14,7 +15,7 @@ public class CEPService : ICEPService
         _refitCEPService = RestService.For<IRefitCEPService>("https://viacep.com.br");
     }
 
-    public async Task<CEPObjectValue> ConsultarCepAsync(string cep)
+    public async Task<CEPObjectValueOutput> ConsultarCepAsync(string cep)
     {
         var headers = new Dictionary<string, string> { { "Authorization", "Bearer tokenGoesHere" }, { "X-Tenant-Id", "123" } };
         var rest = RestService.For<IRefitCEPService>("https://viacep.com.br", new RefitSettings() { });
@@ -24,22 +25,22 @@ public class CEPService : ICEPService
         {
             return response.Content;
         }
-        else if (!response.IsSuccessStatusCode && response.Content != null)
+        if(response.IsSuccessStatusCode && response.Content.erro == "true")
         {
-            Console.WriteLine("Erro ao buscar CPF");
 
-            throw new APIGateway.Infrastructure.CEPService.CepException.CepException("Erro ao buscar CPF");
+            Console.WriteLine($"Erro ao buscar CPF: {response?.Content}");
+
+            var error = response?.Content;
+
+            return error ?? new CEPObjectValueOutput() { erro = "true" };
         }
         else
         {
-            Console.WriteLine("Erro ao buscar CPF");
+            Console.WriteLine($"Erro ao buscar CPF: {response?.Error?.Content}");
 
-            throw new Exception("Erro ao buscar CPF");
+            //throw new APIGateway.Infrastructure.CEPService.CepException.CepException("Erro ao buscar CPF");
+
+            return new CEPObjectValueOutput() { erro = response?.Error?.Message };
         }
-    }
-
-    private class TypeError
-    {
-        public string erro { get; set; } = "true";
     }
 }

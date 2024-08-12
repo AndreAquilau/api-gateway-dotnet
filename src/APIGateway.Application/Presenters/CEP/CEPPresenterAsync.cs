@@ -7,6 +7,5 @@ using System.Threading.Tasks;
 namespace APIGateway.Application.Presenters.CEP;
 public class CEPPresenterAsync
 {
-    public string transactionId { get; set; } = String.Empty;
-
+    public string TransactionId { get; set; } = String.Empty;
 }
