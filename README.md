@@ -1,65 +1,62 @@
-## Desenho de Solução da Arquiterura Modular/Microsserviço
+# 🚪 API Gateway – Projeto Base
 
-![Desenho de Arquiterura do Projeto](./doc/Arquitetura.png)
+Este repositório contém a estrutura de um projeto base para um **API Gateway** desenvolvido em .NET, com arquitetura modular e integração com serviços externos via Kafka e CEP. Ideal para aplicações distribuídas e microsserviços.
 
-## Modo de Desenvolvimento
+## 🧱 Estrutura do Projeto
 
-Antes de iniciar o desenvolvimento das novas features, é necessário configurar o ambiente de desenvolvimento.
+| Pasta/Arquivo                          | Descrição                                                                 |
+|----------------------------------------|---------------------------------------------------------------------------|
+| `APIGateway.Api`                       | Camada de apresentação (controllers, endpoints, Swagger, etc.)           |
+| `APIGateway.Application`              | Regras de negócio e orquestração de serviços                             |
+| `APIGateway.Domain`                   | Entidades, interfaces e contratos de domínio                             |
+| `APIGateway.Infrastructure.CEPService`| Integração com serviço externo de consulta de CEP                        |
+| `APIGateway.Infrastructure.Data`      | Implementação de repositórios e acesso a dados                           |
+| `APIGateway.Infrastructure.Kafka`     | Configuração e uso de Kafka (Producer/Consumer)                          |
+| `APIGateway.Test`                     | Testes automatizados (unitários e/ou de integração)                      |
+| `APIGateway.sln`                      | Solução principal do projeto (.NET Solution)                             |
+| `docker-compose.yml`                  | Arquivo para subir dependências via Docker (ex: Kafka, Mongo, etc.)      |
 
-Para iniciar o projeto em modo de desenvolvimento, siga os passos abaixo:
+## 🚀 Principais Funcionalidades
 
-Acesse a pasta src no terminal.
-Execute o seguinte comando:
+- 🔌 Integração com serviços externos via Kafka
+- 📦 Arquitetura em camadas (Api, Application, Domain, Infrastructure)
+- 📮 Serviço de consulta de CEP
+- 🧪 Testes automatizados
+- 🐳 Suporte a Docker Compose para ambiente local
 
-```cs
-dotnet watch run --project .\APIGateway.Api\ --environment Development
+## 🛠 Requisitos
 
-dotnet watch 🚀 Started
-info: APIGateway.Worker.Worker[0]
-      Worker running at: 07/31/2024 00:27:43 -04:00
-info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: http://localhost:5254
-info: Microsoft.Hosting.Lifetime[0]
-      Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\Projetos\.NET\APIGateway\src\APIGateway.Api
-info: APIGateway.Worker.Worker[0]
-      Worker running at: 07/31/2024 00:27:44 -04:00
-info: APIGateway.Worker.Worker[0]
-      Worker running at: 07/31/2024 00:27:45 -04:00
-info: APIGateway.Worker.Worker[0]
-      Worker running at: 07/31/2024 00:27:46 -04:00
-```
+- [.NET 6+](https://dotnet.microsoft.com/)
+- [Docker](https://www.docker.com/)
+- [Kafka](https://kafka.apache.org/)
+- MongoDB ou outro banco, conforme configuração
 
+## ▶️ Como Executar
 
-```json
-{
-  "CEPs": [
-    {
-      "transaction_id": "c613660d-69ce-450c-a5f4-98ba99e0713a",
-      "pipeline": "consultar-cep",
-      "url": "",
-      "query": "",
-      "payload": "01001000",
-      "response": {
-        "cep": "01001-000",
-        "logradouro": "Praça da Sé",
-        "complemento": "lado ímpar",
-        "unidade": "",
-        "bairro": "Sé",
-        "localidade": "São Paulo",
-        "uf": "SP",
-        "ibge": "3550308",
-        "gia": "1004",
-        "ddd": "11",
-        "siafi": "7107"
-      },
-      "status_code": "200",
-      "created_at": "2024-08-29T20:00:00.1000",
-      "updated_at": "2024-08-29T21:00:00.1000"
-    }
-  ]
-}
-```
+1. Clone o repositório:
+   ```bash
+   git https://github.com/AndreAquilau/api-gateway-dotnet.git
+   cd api-gateway
+   ```
+
+2. Suba os serviços com Docker:
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Execute a aplicação:
+   ```bash
+   dotnet build
+   dotnet run --project APIGateway.Api
+   ```
+
+4. Acesse a API via Swagger:
+   ```
+   http://localhost:<porta>/swagger
+   ```
+
+## 📌 Observações
+
+- O projeto está preparado para evoluir com novos serviços e integrações.
+- O uso de Kafka permite comunicação assíncrona entre microsserviços.
+- O serviço de CEP pode ser adaptado para diferentes provedores.
